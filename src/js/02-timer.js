@@ -26,6 +26,7 @@ function onTimerTick() {
     if (diff < 0) { // Таймер повинен зупинятися, коли дійшов до кінцевої дати
         console.log(`Stop Interval = ${timerID}`);
         clearInterval(timerID);
+        Notiflix.Notify.info('Stop Timer');
         return;
     }
 
@@ -88,3 +89,6 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
+
+datePickerInput.classList.add("timer-input");
+startBtn.classList.add("timer-btn");
