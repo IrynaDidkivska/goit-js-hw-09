@@ -32,12 +32,15 @@ function onTimerTick() {
 
     const convertedDiff = convertMs(diff); // {days: 0, hours: 0, minutes: 2, seconds: 20}
 
-    // const { daysEl, hoursEl, minutesEl, secondsEl } = document.querySelectorAll('[data-days], [data-hours], [data-minutes], [data-seconds]');
+    // const { days, hours, minutes, seconds } = document.querySelectorAll('[data-days], [data-hours], [data-minutes], [data-seconds]');
+    ['days', 'hours', 'minutes', 'seconds'].forEach(timeElement => {
+    document.querySelector(`[data-${timeElement}]`).textContent = addLeadingZero(convertedDiff[timeElement]);
+  })
     
-    document.querySelector('[data-days]').textContent = addLeadingZero(convertedDiff.days);
-    document.querySelector('[data-hours]').textContent = addLeadingZero(convertedDiff.hours);
-    document.querySelector('[data-minutes]').textContent = addLeadingZero(convertedDiff.minutes);
-    document.querySelector('[data-seconds]').textContent = addLeadingZero(convertedDiff.seconds);
+    // document.querySelector('[data-days]').textContent = addLeadingZero(convertedDiff.days);
+    // document.querySelector('[data-hours]').textContent = addLeadingZero(convertedDiff.hours);
+    // document.querySelector('[data-minutes]').textContent = addLeadingZero(convertedDiff.minutes);
+    // document.querySelector('[data-seconds]').textContent = addLeadingZero(convertedDiff.seconds);
 }
 // перед рендерингом інтефрейсу форматує значення
 function addLeadingZero(value) { 
