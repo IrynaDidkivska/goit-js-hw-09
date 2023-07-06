@@ -6,20 +6,27 @@ import Notiflix from 'notiflix';
 
 const datePickerInput = document.querySelector('#datetime-picker');
 const startBtn = document.querySelector('[data-start]')
-
+const [dataDays, dataHours, dataMinutes, dataSeconds] = document.querySelectorAll('[data-days], [data-hours], [data-minutes], [data-seconds]');
+const timerDataAttr = {
+  days: dataDays,
+  hours: dataHours,
+  minutes: dataMinutes,
+  seconds: dataSeconds,
+};
+console.dir(timerDataAttr);
 let targetDateTime = null;
 let timerID = null;
 startBtn.addEventListener('click', onClickStartBtn)
 startBtn.disabled = true; // Disabled start btn when page loaded
 
 
-    function onClickStartBtn() {
+function onClickStartBtn() {
     timerID = setInterval(onTimerTick, 1000);
     startBtn.disabled = true; 
     datePickerInput.disabled = true;
-    }
+}
 
-    function onTimerTick() {
+function onTimerTick() {
     const currentDateTime = new Date(); // Get current time
     const diff = targetDateTime - currentDateTime; // Interval in ms between target and current time
 
@@ -32,15 +39,14 @@ startBtn.disabled = true; // Disabled start btn when page loaded
 
     const convertedDiff = convertMs(diff); // {days: 0, hours: 0, minutes: 2, seconds: 20}
 
+    for (const property in convertedDiff) {
+    const value = convertedDiff[property];
+      timerDataAttr[property].textContent = addLeadingZero(value);
+    }
 
-    ['days', 'hours', 'minutes', 'seconds'].forEach(timeElement => {
-     const element = document.querySelector(`[data-${timeElement}]`);
-     const value = convertedDiff[timeElement];
-     element.textContent = addLeadingZero(value);
-  })
     
 
-    }
+}
 // перед рендерингом інтефрейсу форматує значення
     function addLeadingZero(value) { 
     return String(value).padStart(2, "0");

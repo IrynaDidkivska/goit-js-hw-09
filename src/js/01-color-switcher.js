@@ -10,8 +10,8 @@ stopBtnHeandler.addEventListener('click', stopBtnHeandlerClick);
 
 console.dir(startBtnHeandler);
 
-function startBtnHeandlerClick() { 
-    startBtnHeandler.disabled = true;
+function startBtnHeandlerClick({target}) { 
+    target.disabled = true;
     stopBtnHeandler.disabled = false;
      timerId = setInterval(() => {
     return body.style.backgroundColor = getRandomHexColor();
@@ -19,9 +19,10 @@ function startBtnHeandlerClick() {
     console.log('Start');
 }
 
-function stopBtnHeandlerClick() { 
-    startBtnHeandler.disabled = false;
-    stopBtnHeandler.disabled = true;
+function stopBtnHeandlerClick({target}) { 
+  startBtnHeandler.disabled = false;
+  target.disabled = true;
+  
     clearInterval(timerId);
     console.log('Stop');
 }
