@@ -5,21 +5,21 @@ const body = document.querySelector('body');
 const startBtnHeandler = document.querySelector('[data-start]');
 const stopBtnHeandler = document.querySelector('[data-stop]');
 let timerId = null;
-startBtnHeandler.addEventListener('click', startBtnHeandlerClick );
-stopBtnHeandler.addEventListener('click', stopBtnHeandlerClick);
+startBtnHeandler.addEventListener('click', startBtnHandlerClick );
+stopBtnHeandler.addEventListener('click', stopBtnHandlerClick);
 
 console.dir(startBtnHeandler);
 
-function startBtnHeandlerClick({target}) { 
+function startBtnHandlerClick({target}) { 
     target.disabled = true;
     stopBtnHeandler.disabled = false;
      timerId = setInterval(() => {
-    return body.style.backgroundColor = getRandomHexColor();
+     body.style.backgroundColor = getRandomHexColor();
      }, 1000)
     console.log('Start');
 }
 
-function stopBtnHeandlerClick({target}) { 
+function stopBtnHandlerClick({target}) { 
   startBtnHeandler.disabled = false;
   target.disabled = true;
   
