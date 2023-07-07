@@ -6,14 +6,7 @@ import Notiflix from 'notiflix';
 
 const datePickerInput = document.querySelector('#datetime-picker');
 const startBtn = document.querySelector('[data-start]')
-const [dataDays, dataHours, dataMinutes, dataSeconds] = document.querySelectorAll('[data-days], [data-hours], [data-minutes], [data-seconds]');
-const timerDataAttr = {
-  days: dataDays,
-  hours: dataHours,
-  minutes: dataMinutes,
-  seconds: dataSeconds,
-};
-console.dir(timerDataAttr);
+
 let targetDateTime = null;
 let timerID = null;
 startBtn.addEventListener('click', onClickStartBtn)
@@ -41,7 +34,7 @@ function onTimerTick() {
 
     for (const property in convertedDiff) {
     const value = convertedDiff[property];
-      timerDataAttr[property].textContent = addLeadingZero(value);
+      document.querySelector(`[data-${property}]`).textContent = addLeadingZero(value);
     }
 
     
